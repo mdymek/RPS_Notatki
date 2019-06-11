@@ -1,0 +1,238 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fullpage} % Package to use full page
+\usepackage{parskip} % Package to tweak paragraph skipping
+\usepackage{tikz} % Package for drawing
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage[MeX]{polski}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+
+
+\begin{document}
+    Prawdopodobieństwo warunkowe
+    \begin{equation}
+        P(E|F) = \frac{P(E \cap F)}{P(F)}
+    \end{equation}
+
+    \begin{equation}
+        P(E_1 \cap \dots \cap E_n) = \prod_{i=1}^{n} P(X_i | X_1, \dots, X_{i-1})
+    \end{equation}
+
+    \begin{equation}
+        P(E) = \sum_{i=1}^{n} P(E|F_i)P(F_i) \text{ dla } \bigcap_{i=1}^{n} F_i = \Omega
+    \end{equation}
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ p{5cm} | p{5cm} p{5.5cm} }
+                & zmienne dyskretne & zmienne ciągłe\\
+                \toprule
+                definicja & $P(x) = P(X=x)$ & $f(x) = F'(x)$\\
+                obliczanie prawdopodobieństwa & $P(X \in A) = \sum_{x \in A} P(x)$ & $P(X \in A) = \int_{A} f(x)dx$\\
+                skumulowana f. rozkładu & $F(x) = P(X \leq x) = \sum_{y \leq x}P(y)$ &
+                $F(x) = P(X \leq x) = \int_{-\infty}^{x}f(y)dy$\\
+                całkowite prawdopodobieństwo & $\sum_{x}P(x) = 1$ & $\int_{- \infty}^{\infty}f(x)dx = 1$\\
+                wartość oczekiwana & $EX = \sum_{x} x P(x)$ & $EX = \int xf(x) dx$\\
+                wariancja & $VarX = \sigma^2 = E[ (X - \mu)^2 ]$ & $VarX = \int_{- \infty}^{\infty} (x - \mu)^2 f(x) dx$\\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+    Nierówność Czebyszewa
+
+    \begin{equation}
+        P( |X - \mu| > \epsilon ) \leq (\frac{\sigma}{\epsilon})^2
+    \end{equation}
+
+    Rozkłady dyskretne
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ p{2.3cm} | p{6cm} p{1.8cm} p{2.2cm} p{2.5cm}}
+                Rozkład & P(x) & EX & VarX\\
+                \toprule
+
+                Bernoulli(p) &
+                \[P(x) = \left\{\begin{array}{lr}
+                                    p, & \text{for } x = 1\\
+                                    q = (1-p), & \text{for } x = 0
+                \end{array}\right.\]
+                &
+                $EX = p$
+                &
+                $VarX = pq$
+                &
+                próba\\
+                \cmidrule(rl){2-5}
+
+                Binomial(n, p) &
+                $P(x) = \binom{n}{x} p^x (1-p)^{n-x} \text{ for } x = 0,1,\dots$
+                &
+                $EX = np$
+                &
+                $VarX = npq$
+                &
+                liczba sukcesów z n prób\\
+                \cmidrule(rl){2-5}
+
+                Geometric(p) &
+                $P(x) = (1-p)^{x-1}p \text{ for } x = 1,2,\dots$
+
+                $P(X>k) = (1-p)^k$
+                &
+                $EX = \frac{1}{p}$
+                &
+                $VarX = \frac{1-p}{p^2}$
+                &
+                liczba prób do sukcesu\\
+                \cmidrule(rl){2-5}
+
+                Poiss($\lambda$) &
+                $P(x) = e^{-\lambda} \frac{\lambda^x}{x!} \text{ for } x = 0,1,\dots$
+                &
+                $EX = \lambda$
+                &
+                $VarX = \lambda$
+                &
+                rozkład zdarzeń rzadkich\\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+
+    Rozkłady ciągłe
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ p{2.3cm} | p{5.5cm} p{1.8cm} p{2.5cm} p{2.5cm}}
+                Rozkład & f(x), F(x) & EX & VarX\\
+                \toprule
+
+                Unif(a,b) &
+                $f(x) = \frac{1}{b-a} \text{ for } a \leq x \leq b$
+
+                \[F(x) = \left\{\begin{array}{lr}
+                                    0, & \text{for } x < a\\
+                                    \frac{x-a}{b-a}, &  \text{for } a \leq x < b\\
+                                    1, & \text{for } x \geq b
+                \end{array}\right.\]
+                &
+                $EX = \frac{a+b}{2}$
+                &
+                $VarX = \frac{(b-a)^2}{12}$
+                &
+                \\
+                \cmidrule(rl){2-5}
+
+                Exp($\lambda$) &
+                $f(x) = \lambda e^{-\lambda x} \text{ for } x \geq 0$
+
+                $F(x) = 1 - e^{-\lambda x}$
+                &
+                $EX = \frac{1}{\lambda}$
+                &
+                $VarX = \frac{1}{\lambda^2}$
+                & modelowanie czasu, brak pamięci\\
+                \cmidrule(rl){2-5}
+
+                Gamma($\alpha, \lambda$) &
+                $f(x) = \frac{\lambda^{\alpha}}{\Gamma (\alpha)} x^{\alpha-1} e^{-\lambda x}$
+
+                $F(x) = \frac{\lambda ^{\alpha}}{\Gamma(\alpha)} \int_{0}^{x} t^{\alpha-1} e^{-\lambda t} dt$
+                &
+                $EX = \frac{\alpha}{\lambda}$
+                &
+                $VarX = \frac{\alpha}{\lambda ^2}$
+                &
+                łączny czas $\alpha$ niezależnych zdarzeń $\sim Exp(\lambda)$\\
+                \cmidrule(rl){2-5}
+
+                N( $\mu, \sigma$) &
+                $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{-(x - \mu)^2}{2 \sigma^2}}$
+
+                $F(x) = \Phi(x)$ dla N(0,1)
+                &
+                $EX = \mu$
+                &
+                $VarX = \sigma^2$
+                &\\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+    \begin{equation}
+        Bin(n, p) \approx Poiss(\lambda)
+    \end{equation}
+
+    \begin{equation}
+        P(T \leq t) = P( X \geq \alpha)
+    \end{equation}
+    \begin{equation*}
+        T \sim Gamma(\alpha, \lambda), X \sim Poiss(\lambda t)
+    \end{equation*}
+
+    \begin{equation}
+        Binomial(n, p) = N(np, \sqrt{np(1-p})
+    \end{equation}
+    \begin{equation*}
+        X_i \sim Bernoulli(p), S_n = \sum_{i=1}^{n} X_i, 0.05 \leq p \leq -.095
+    \end{equation*}
+
+
+    Rozkład łączny
+    \begin{equation*}
+        F_{(X,Y)}(x,y) = P( X \leq x \cap Y \leq y)
+    \end{equation*}
+
+    \begin{equation*}
+        f_{(X,Y)}(x,y) = \frac{\delta^2}{\delta x \delta y} F_{(X,Y)}(x,y)
+    \end{equation*}
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ p{5cm} | p{5.5cm} p{5cm} }
+                & zmienne dyskretne & zmienne ciągłe\\
+                \toprule
+                rozkłady brzegowe &
+                $P(x) = \sum_y P(x,y)$
+
+                $P(y) = \sum_x P(x,y)$
+
+                &
+                $f(x) = \int_{Y} f(x,y)dy$
+
+                $f(y) = \int_{X} f(x,y)dx$
+                \\
+
+                niezależność &
+                $P(x,y) = P(x)P(y)$ &
+                $f(x,y) = f(x)f(y)$
+                \\
+
+                obliczanie prawdopodobieństwa &
+                $P( (X,Y) \in A) = \sum_{(x,y) \in A} P(x,y)$ &
+                $\int \int_{(x,y) \in A} f(x,y)dx dy$\\
+
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+    Centralne Twierdzenie Graniczne
+    \begin{equation}
+        Z_n = \frac{S_n - E(S_n)}{Std(S_n)} = \frac{S_n - n \mu}{\sqrt(n) \sigma} \rightarrow N(0,1) \text{ for } n \text{ to } \infty
+    \end{equation}
+    \begin{equation*}
+        S_n = \sum_{i=1}^n X_i, E(X_i) = \mu, Std(X_i) = \sigma
+    \end{equation*}
+
+
+\end{document}

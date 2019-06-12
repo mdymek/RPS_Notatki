@@ -234,5 +234,96 @@
         S_n = \sum_{i=1}^n X_i, E(X_i) = \mu, Std(X_i) = \sigma
     \end{equation*}
 
+    Estymatory - Monte Carlo
+    dla $X$, $p = P(X \in A)$
+    \begin{equation*}
+        \hat{p} = \hat{P}(X \in A) = \frac{\#(X_i \in A)}{n}
+    \end{equation*}
+    \begin{equation*}
+        E \hat{p} = \frac{1}{n} (np) = p
+    \end{equation*}
+    \begin{equation*}
+        Std \hat{p} = \frac{1}{n}\sqrt{np(1-p)} = \sqrt(\frac{p(1-p)}{n})
+    \end{equation*}
+    Dokładność
+    \begin{equation*}
+        P(|\hat{p} - p| > \epsilon) = P(\frac{|\hat{p} - p|}{\sqrt{\frac{p(1-p)}{n}}} > \frac{\epsilon}{\sqrt{\frac{p(1-p)}{n}}})
+        \approx 2 \Phi( \frac{-\epsilon \sqrt{n}}{\sqrt{p(1-p)}})
+    \end{equation*}
+
+    Estymacja średniej $\bar{X}$ z $X_1, \dots, X_n$ ze wspólnym $\mu$ i $\sigma$
+    \begin{equation*}
+        E \bar{X} = \frac{1}{n} (EX_1 + \dots + EX_n) = \frac{1}{n} n\mu = \mu
+    \end{equation*}
+    \begin{equation*}
+        Var \bar{X} = \frac{1}{n^2} (Var(X_1) + \dots + Var(X_n)) = \frac{1}{n^2} n\sigma^2 = \frac{\sigma^2}{n}
+    \end{equation*}
+    Estymator wariancji
+    \begin{equation*}
+        S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2
+    \end{equation*}
+
+    Procesy Markowa
+    \begin{equation*}
+        P =
+        \begin{bmatrix}
+            p_{1 1} & p_{1 2} & \dots & p_{1 n}\\
+            p_{2 1} & p_{2 2} & \dots & p_{2 n}\\
+            \dots & \dots & \dots & \dots\\
+            p_{n 1} & p_{n 2} & \dots & p_{n n}
+        \end{bmatrix}
+    \end{equation*}
+
+    Rozkład w czasie h: $P_h = P_0 * P^h$
+
+    Rozkład stacjonarny: $\pi P = \pi$, $\sum \pi_i = 1$
+
+    Estymacja: metoda momentów
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ p{.4\textwidth} p{.6\textwidth}}
+                k-ty moment z populacji &
+                $\mu_k = E(X^k)$\\
+
+                k-ty centralny moment z populacji &
+                $\mu_k' = E((X - \mu_1)^k)$\\
+
+                k-ty moment z próby &
+                $m_k = \frac{1}{n} \sum_{i=1}^n X_i^k$\\
+
+                k-ty centralny moment z próby &
+                $m_k' = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^k$
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+    $\mu_1 = EX, \mu_2 = VarX, \mu_k = m_k$\\
+
+    Estymacja: metoda największej wiarygodności
+    \begin{equation*}
+        P(X = (X_1, \dots, X_n)) = P(X_1, \dots, X_n) = \prod_{i=1}^n P(X_i)
+    \end{equation*}
+    Szukamy ekstremum: $\frac{\delta P}{\delta \theta} (x) = 0$, używając logarytmu.
+
+
+    Przedziały ufności
+    \begin{equation*}
+        \hat{\theta} \pm z_{\frac{\alpha}{2}} \sigma(\hat{\theta})
+    \end{equation*}
+    \begin{equation*}
+    \bar{X} \pm z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}
+    \end{equation*}
+    \begin{equation*}
+\bar{X} - \bar{Y} = z_{\frac{\alpha}{2}} \pm \sqrt{\frac{\sigma_x^2}{n_x} + \frac{\sigma_y^2}{n_y}}
+    \end{equation*}
+
+    Rozkład t-studenta
+
+    $t = \frac{\hat{\theta} = \theta}{s(\hat{\theta})} \leftarrow$ zastępujemy $Std(\hat{\theta})$ przez $S(\hat{\theta})$,
+    n-1 stopni swobody
+    \begin{equation*}
+        \bar{X} \pm t_{\frac{\alpha}{2}}^{(n-1)} \frac{S}{\sqrt{n}}
+    \end{equation*}
 
 \end{document}

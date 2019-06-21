@@ -178,10 +178,10 @@
     \end{equation*}
 
     \begin{equation}
-        Binomial(n, p) = N(np, \sqrt{np(1-p})
+        Binomial(n, p) = N(np, \sqrt{np(1-p)})
     \end{equation}
     \begin{equation*}
-        X_i \sim Bernoulli(p), S_n = \sum_{i=1}^{n} X_i, 0.05 \leq p \leq -.095
+        X_i \sim Bernoulli(p), S_n = \sum_{i=1}^{n} X_i, 0.05 \leq p \leq -0.95
     \end{equation*}
 
 
@@ -225,7 +225,7 @@
 
     \textbf{Centralne Twierdzenie Graniczne}
     \begin{equation}
-        Z_n = \frac{S_n - E(S_n)}{Std(S_n)} = \frac{S_n - n \mu}{\sqrt(n) \sigma} \rightarrow N(0,1) \text{ for } n \text{ to } \infty
+        Z_n = \frac{S_n - E(S_n)}{Std(S_n)} = \frac{S_n - n \mu}{\sqrt{n} \sigma} \rightarrow N(0,1) \text{ for } n \text{ to } \infty
     \end{equation}
     \begin{equation*}
         S_n = \sum_{i=1}^n X_i, E(X_i) = \mu, Std(X_i) = \sigma
@@ -238,10 +238,10 @@
         \hat{p} = \hat{P}(X \in A) = \frac{\#(X_i \in A)}{n}
     \end{equation*}
     \begin{equation*}
-        E \hat{p} = \frac{1}{n} (np) = p
+        E(\hat{p}) = \frac{1}{n} (np) = p
     \end{equation*}
     \begin{equation*}
-        Std \hat{p} = \frac{1}{n}\sqrt{np(1-p)} = \sqrt(\frac{p(1-p)}{n})
+        Std(\hat{p}) = \frac{1}{n}\sqrt{np(1-p)} = \sqrt{\frac{p(1-p)}{n}}
     \end{equation*}
     Dokładność
     \begin{equation*}
@@ -259,7 +259,7 @@
 
     \textbf{Estymator wariancji}
     \begin{equation*}
-        S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2
+        s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2
     \end{equation*}
 
     \textbf{Procesy Markowa}
@@ -297,7 +297,7 @@
         \end{center}
     \end{table}
 
-    $\mu_1 = EX, \mu_2 = VarX, \mu_k = m_k$\\
+    $\mu_1 = EX, \mu_2' = VarX, \mu_k = m_k$\\
 
     Estymacja: \textbf{metoda największej wiarygodności}
     \begin{equation*}
@@ -319,10 +319,10 @@
 
     \textbf{Rozkład t-studenta}
 
-    $t = \frac{\hat{\theta} = \theta}{s(\hat{\theta})} \leftarrow$ zastępujemy $Std(\hat{\theta})$ przez $S(\hat{\theta})$,
+    $t = \frac{\hat{\theta} = \theta}{s(\hat{\theta})} \leftarrow$ zastępujemy $Std(\hat{\theta})$ przez $s(\hat{\theta})$,
     n-1 stopni swobody
     \begin{equation*}
-        \bar{X} \pm t_{\frac{\alpha}{2}}^{(n-1)} \frac{S}{\sqrt{n}}
+        \bar{X} \pm t_{\frac{\alpha}{2}}^{(n-1)} \frac{s(\hat{\theta})}{\sqrt{n}}
     \end{equation*}
 
     \textbf{Z-testy}
@@ -331,20 +331,20 @@
         \begin{center}
             \begin{tabular}{ p{2.5cm} |p{2.5cm} |p{1.5cm} |p{4cm} |p{4cm}}
                 \toprule
-                Null hypothesis & Parameter,
+                Hipoteza zerowa & Parametr,
 
-                estimator & \multicolumn{2}{c|}{if $H_0$ is true:} & Test statistic\\
+                estymator & \multicolumn{2}{c|}{jeśli $H_0$ jest prawdziwa:} & Statystyka \\
                 \toprule
 
                 $H_0$ & $\theta, \hat{\theta}$ & $E(\hat{\theta})$ & $Var(\hat{\theta})$ & $Z = \frac{\hat{\theta} - \theta_0}{\sqrt{Var(\hat{\theta})}}$\\
 
                 \cmidrule(r){1-5}
 
-                $\mu = \mu_0$ & $\mu$, $\bar{X}$ & $\mu_0$ & $\frac{\sigma^2}{n}$ & $\frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$\\
+                $\mu = \mu_0$ & $\mu$, $\bar{X}$ & $\mu_0$ & $\frac{\sigma^2}{n}$ & $Z = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$\\
 
                 \cmidrule(r){1-5}
 
-                $p = p_0$ & $p$, $\hat{p}$ & $p_0$ & $\frac{p_0(1-p_0)}{n}$ & $\frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$\\
+                $p = p_0$ & $p$, $\hat{p}$ & $p_0$ & $\frac{p_0(1-p_0)}{n}$ & $Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$\\
 
                 \cmidrule(r){1-5}
 
@@ -352,7 +352,7 @@
                 $\mu_X - \mu_Y$,
 
                 $\bar{X} - \bar{Y}$
-                & $D$ & $\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{n}$ & $\frac{\bar{X} + \bar{Y} - D}{\sqrt{\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}}}$\\
+                & $D$ & $\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{n}$ & $Z = \frac{\bar{X} + \bar{Y} - D}{\sqrt{\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}}}$\\
 
                 \cmidrule(r){1-5}
 
@@ -360,7 +360,7 @@
 
                 $\hat{p_1} - \hat{p_2}$
                 & $D$ & $\frac{p_1(1-p_1)}{n} + \frac{p_2(1-p_2)}{m}$ &
-                $\frac{\hat{p_1} - \hat{p_2} - D}{\sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n} + \frac{\hat{p_2}(1-\hat{p_2})}{m}}}$\\
+                $Z = \frac{\hat{p_1} - \hat{p_2} - D}{\sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n} + \frac{\hat{p_2}(1-\hat{p_2})}{m}}}$\\
 
                 \cmidrule(r){1-5}
 
@@ -368,9 +368,9 @@
 
                 $\hat{p_1} - \hat{p_2}$ & $0$ & $p(1-p)(\frac{1}{n} + \frac{1}{m})$
 
-                where $p = p_1 = p_2$ & $\frac{\hat{p_1} - \hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n} + \frac{1}{m})}}$
+                gdzie $p = p_1 = p_2$ & $Z = \frac{\hat{p_1} - \hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n} + \frac{1}{m})}}$
 
-                where $\hat{p} = \frac{n\hat{p_1} + m\hat{p_2}}{n + m}$\\
+                gdzie $\hat{p} = \frac{n\hat{p_1} + m\hat{p_2}}{n + m}$\\
                 \bottomrule
             \end{tabular}
         \end{center}
@@ -382,47 +382,47 @@
         \begin{center}
             \begin{tabular}{ p{.2\textwidth} |p{.3\textwidth} |p{.25\textwidth} |p{.25\textwidth}}
                 \toprule
-                Hypothesis $H_0$ & Conditions & Test static t & Degrees of freedom\\
+                Hipoteza zerowa & Warunki & Statystyka & Stopnie swobody\\
                 \toprule
 
-                $\mu = \mu_0$ & Sample size $n$;
+                $\mu = \mu_0$ & Rozmiar próby $n$;
 
-                unknown $\sigma$ & $t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}}$ & $n-1$\\
+                nieznana $\sigma$ & $t = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}}$ & $n-1$\\
 
                 \cmidrule(r){1-4}
 
-                $\mu_X - \mu_Y = D$ & Sample sizes $n$, $m$
-                unknown but equal $\sigma_X = \sigma_Y$ & $t = \frac{\bar{X} - \bar{Y} - D}{s_p\sqrt{\frac{1}{n}+\frac{1}{m}}}$
+                $\mu_X - \mu_Y = D$ & Rozmiary prób $n$, $m$
+                nieznane, równe $\sigma_X = \sigma_Y$ & $t = \frac{\bar{X} - \bar{Y} - D}{s_p\sqrt{\frac{1}{n}+\frac{1}{m}}}$
                 & $n+m-2$\\
 
                 \cmidrule(r){1-4}
 
-                $\mu_X - \mu_Y = D$ & Sample sizes $n$, $m$;
+                $\mu_X - \mu_Y = D$ & Rozmiary prób $n$, $m$;
 
-                unknown and unequal $\sigma_X \neq \sigma_Y$ & $t = \frac{\bar{X} - \bar{Y} - D}{\sqrt{\frac{s_X^2}{n} + \frac{s_Y^2}{m}}}$
-                & Satterthwaite approximation\\
+                nieznane, różne $\sigma_X \neq \sigma_Y$ & $t = \frac{\bar{X} - \bar{Y} - D}{\sqrt{\frac{s_X^2}{n} + \frac{s_Y^2}{m}}}$
+                & aproksymacja Satterthwaite\\
 
                 \bottomrule
             \end{tabular}
         \end{center}
     \end{table}
 
-    \textbf{P-values} - accept if $P \geq 0.1$, reject if $P \leq 0.01$
+    \textbf{P-wartości} - akceptacja $H_0$ jeśli $P \geq 0.1$, odrzucenie dla $P \leq 0.01$
     \begin{table}[H]
         \begin{center}
             \begin{tabular}{ p{.25\textwidth} |p{.25\textwidth} |p{.25\textwidth} |p{.25\textwidth}}
                 \toprule
-                Hypothesis $H_0$ & Alternative $H_A$ & P-value & Computation\\
+                Hipoteza zerowa & Hipoteza alternatywna & P-wartość & Wyliczenie\\
                 \toprule
-                \multirow{3}{*}{$\theta = \theta_0$} & right-tail
+                \multirow{3}{*}{$\theta = \theta_0$} & prawostronna
 
                 $\theta > \theta_0$ & $P\{Z \geq Z_{obs}\}$ & $1 - \Phi(Z_{obs})$\\
 
-                & left-tail
+                & lewostronna
 
                 $\theta < \theta_0$ & $P\{Z \leq Z_{obs}\}$ & $\Phi(Z_{obs})$\\
 
-                & two-sided
+                & dwustronna
 
                 $\theta \neq \theta_0$ & $P\{|Z| \geq |Z_{obs}|\}$ & $2(1 - \Phi(|Z_{obs}|))$\\
 
@@ -433,7 +433,7 @@
 
     \textbf{Rozkład obserwacji o rozkładzie normalnym i wspólnej wariancji $\sigma^2$}
     \begin{equation*}
-        \frac{(n-1)s^2}{\sigma^2} = \sum_{i=1}^{n}(\frac{X_i - \bar{X}}{\sigma})^2 \sim Chi-square(n-1) \sim Gamma \left ( \frac{n-1}{2}, \frac{1}{2} \right )
+        \frac{(n-1)s^2}{\sigma^2} = \sum_{i=1}^{n} \left ( \frac{X_i - \bar{X}}{\sigma} \right )^2 \sim Chi-square(n-1) \sim Gamma \left ( \frac{n-1}{2}, \frac{1}{2} \right )
     \end{equation*}
 
     Zatem przedział ufności:
